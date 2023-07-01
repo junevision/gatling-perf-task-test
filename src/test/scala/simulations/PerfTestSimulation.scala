@@ -12,6 +12,6 @@ class PerfTestSimulation extends Simulation {
   // mvn gatling:test -DTableProductQuantity=2 -DChairProductQuantity=2
 
   setUp(
-    scnShopping.inject(atOnceUsers(1))
+    scnShopping.inject(atOnceUsers(100))
   ).protocols(httpProtocol)
 }

@@ -1,0 +1,10 @@
+{
+  "simulation": "simulations.PerfTestSimulation",
+  "simulationId": "perftestsimulation",
+  "start": 1688197919742,
+  "description": "",
+  "scenarios": ["shopping process bases on task requirements"],
+  "assertions": [
+
+  ]
+}
