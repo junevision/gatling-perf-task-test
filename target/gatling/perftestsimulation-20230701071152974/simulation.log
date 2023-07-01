@@ -1,0 +1,24 @@
+RUN	simulations.PerfTestSimulation	perftestsimulation	1688195512974	 	3.6.1
+USER	shopping process bases on task requirements	START	1688195516138
+REQUEST	open the application	home	1688195516166	1688195520095	OK	 
+GROUP	open the application	1688195516141	1688195523595	3929	OK
+REQUEST	navigate to the 'tables' tab	/tables	1688195523607	1688195523714	OK	 
+GROUP	navigate to the 'tables' tab	1688195523596	1688195526299	107	OK
+REQUEST	open a table product cart	/products/living-room-table8	1688195526315	1688195526407	OK	 
+GROUP	open a table product cart	1688195526306	1688195529683	92	OK
+REQUEST	add table to cart	add product to cart with id 121 and quantity 2	1688195529687	1688195529744	OK	 
+GROUP	add table to cart	1688195529683	1688195533693	57	OK
+REQUEST	navigate to the 'chairs' tab	/chairs	1688195533695	1688195533807	OK	 
+GROUP	navigate to the 'chairs' tab	1688195533694	1688195536358	112	OK
+REQUEST	open a random chair	/products/modern-chair8	1688195536360	1688195536462	OK	 
+GROUP	open a random chair	1688195536358	1688195541215	102	OK
+REQUEST	add the chair to cart	add product to cart with id 91 and quantity 2	1688195541216	1688195541265	OK	 
+GROUP	add the chair to cart	1688195541215	1688195545211	49	OK
+REQUEST	open cart	/cart	1688195545212	1688195545286	OK	 
+GROUP	open cart	1688195545212	1688195548506	74	OK
+REQUEST	place an order	go to checkout	1688195548508	1688195548578	OK	 
+GROUP	place an order	1688195548507	1688195552959	70	OK
+REQUEST	fill in all required fields and place order	fill in required fields and check out	1688195552962	1688195553047	OK	 
+REQUEST	fill in all required fields and place order	fill in required fields and check out Redirect 1	1688195553051	1688195553106	OK	 
+GROUP	fill in all required fields and place order	1688195552960	1688195569535	140	OK
+USER	shopping process bases on task requirements	END	1688195569541

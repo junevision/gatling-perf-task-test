@@ -1,0 +1,4 @@
+.idea
+gatling-perf-task-test.iml
+target/generated-test-sources
+target/test-classes
