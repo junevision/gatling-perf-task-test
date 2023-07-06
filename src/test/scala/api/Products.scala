@@ -22,7 +22,6 @@ object Products {
     exec(
       http(productsFilePath + specificProductPath)
         .get(baseUrl + productsFilePath + specificProductPath)
-        .header("Set-Cookie", "${cookies}")
         .check(regex("""name="current_product" value="(.+?)">""").saveAs(productId))
         .check(regex("""small-price ic-design">\S(.*?.00)""").saveAs(productPrice))
     )

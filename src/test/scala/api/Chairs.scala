@@ -14,7 +14,6 @@ object Chairs {
     exec(
       http(chairFilePath)
         .get(baseUrl + chairFilePath)
-        .header("Set-Cookie", "${cookies}")
     )
   }
 }

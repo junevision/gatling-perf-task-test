@@ -53,7 +53,7 @@ object Shopping {
           .feed(usersFeeder)
           .group("fill in all required fields and place order") {
             exec(api.Checkout.fillInAllRequiredFieldsAndCheckOut())
-              .exec(thinkTimer(10, 15))
+              .exec(thinkTimer())
           }
       )
   }

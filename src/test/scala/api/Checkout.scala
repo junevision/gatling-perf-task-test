@@ -20,7 +20,6 @@ object Checkout {
         .formParam("p_id[]", "${table_product_id}__,${chair_product_id}__")
         .formParam("trans_id", "16873163302612")
         .formParam("total_net", "${total_price}")
-        .header("Set-Cookie", "${cookies}")
     )
   }
 
@@ -47,7 +46,6 @@ object Checkout {
         .formParam("cart_email", "${email_address}")
         .formParam("cart_inside_header_1", "<b>BILLING ADDRESS</b>")
         .formParam("total_net", "${total_price}")
-        .header("Set-Cookie", "${cookies}")
     )
   }
 }

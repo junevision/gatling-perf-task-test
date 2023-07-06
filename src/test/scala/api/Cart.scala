@@ -27,7 +27,6 @@ object Cart {
         .formParam("add_cart_data", s"current_product=$productId&cart_content=&current_quantity=$productQuantity")
         .formParam("cart_widget", "0")
         .formParam("cart_container", "0")
-        .header("Set-Cookie", "${cookies}")
         .check(substring("Added!").exists)
     )
   }
@@ -36,7 +35,6 @@ object Cart {
     exec(
       http(cartFilePath)
         .get(baseUrl + cartFilePath)
-        .header("Set-Cookie", "${cookies}")
         .check(regex("""name="total_net" value="(.+?)"""").find.saveAs("total_price"))
     )
   }

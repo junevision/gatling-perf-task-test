@@ -14,7 +14,6 @@ object Tables {
     exec(
       http(tableFilePath)
         .get(baseUrl + tableFilePath)
-        .header("Set-Cookie", "${cookies}")
     )
   }
 }

@@ -12,7 +12,6 @@ object Home {
     exec(
       http("home")
         .get(baseUrl)
-        .check(headerRegex("Set-Cookie", "wp_ic_session_(.+)").saveAs("cookies"))
     )
   }
 }
