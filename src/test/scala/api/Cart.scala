@@ -18,10 +18,10 @@ object Cart {
 
   def addToCart(): ChainBuilder = {
     exec(
-      http("add ${product_name} to cart with id ${current_product_id} and quantity ${current_product_quantity}")
+      http("add #{product_name} to cart with id #{current_product_id} and quantity #{current_product_quantity}")
         .post(baseUrl + addToCartFilePath)
         .formParam("action", "ic_add_to_cart")
-        .formParam("add_cart_data", "current_product=${current_product_id}&cart_content=&current_quantity=${current_product_quantity}")
+        .formParam("add_cart_data", "current_product=#{current_product_id}&cart_content=&current_quantity=#{current_product_quantity}")
         .formParam("cart_widget", "0")
         .formParam("cart_container", "0")
         .check(substring("Added!").exists)

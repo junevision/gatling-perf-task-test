@@ -8,7 +8,7 @@ import io.gatling.http.Predef._
 
 object Products {
 
-  val productsFilePath: String = "/products" + "/${product_name}"
+  val productsFilePath: String = "/products" + "/#{product_name}"
 
   val regexOfCurrentProductId = """name="current_product" value="(.+?)">"""
   val regexOfCurrentProductQuantity = """<input name="current_quantity".+value="(.+?)">"""
