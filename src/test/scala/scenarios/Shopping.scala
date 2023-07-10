@@ -58,6 +58,10 @@ object Shopping {
                   exec(api.Checkout.fillInAllRequiredFieldsAndCheckOut())
                     .exec(thinkTimer())
                 }
+                .exec { session =>
+                  println(session("Response").as[String])
+                  session
+                }
           )
       )
   }
