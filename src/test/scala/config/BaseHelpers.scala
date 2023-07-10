@@ -11,10 +11,6 @@ object BaseHelpers {
   private val scheme = "http"
   private val host = "localhost"
   val baseUrl: String = scheme + "://" + host
-  val productsFeeder = csv("feeders/products.csv").random
-  val usersFeeder = csv("feeders/users.csv").random
-  val tableProductQuantity = System.getProperty("TableProductQuantity", "1")
-  val chairProductQuantity = System.getProperty("ChairProductQuantity", "1")
 
   def thinkTimer(Min: Int = 2, Max: Int = 5): ChainBuilder = {
     pause(Min, Max)

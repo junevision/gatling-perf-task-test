@@ -11,23 +11,21 @@ object Cart {
   val addToCartFilePath = "/wp-admin/admin-ajax.php"
   val cartFilePath = "/cart"
 
-  def addTableToCart(): ChainBuilder = {
-    addToCart("${table_product_id}", tableProductQuantity)
-  }
+  val regexOfTotalPrice = """name="total_net" value="(.+?)""""
+  val regexOfProductId = """class="product_id" value="(.+?)">"""
+  val regexOfProductQuantity = """name="p_quantity\[]" value="(.+?)">"""
+  val regexOfProductPrice = """data-price="(.+?)""""
 
-  def addChairToCart(): ChainBuilder = {
-    addToCart("${chair_product_id}", chairProductQuantity)
-  }
-
-  private def addToCart(productId: String, productQuantity: String): ChainBuilder = {
+  def addToCart(): ChainBuilder = {
     exec(
-      http(s"add product to cart with id $productId and quantity $productQuantity")
+      http("add ${product_name} to cart with id ${current_product_id} and quantity ${current_product_quantity}")
         .post(baseUrl + addToCartFilePath)
         .formParam("action", "ic_add_to_cart")
-        .formParam("add_cart_data", s"current_product=$productId&cart_content=&current_quantity=$productQuantity")
+        .formParam("add_cart_data", "current_product=${current_product_id}&cart_content=&current_quantity=${current_product_quantity}")
         .formParam("cart_widget", "0")
         .formParam("cart_container", "0")
         .check(substring("Added!").exists)
+        .check(status.is(200))
     )
   }
 
@@ -35,7 +33,11 @@ object Cart {
     exec(
       http(cartFilePath)
         .get(baseUrl + cartFilePath)
-        .check(regex("""name="total_net" value="(.+?)"""").find.saveAs("total_price"))
+        .check(status.is(200))
+        .check(regex(regexOfTotalPrice).find.saveAs("total_price"))
+        .check(regex(regexOfProductId).find.saveAs("product_id"))
+        .check(regex(regexOfProductQuantity).find.saveAs("product_quantity"))
+        .check(regex(regexOfProductPrice).find.saveAs("product_price"))
     )
   }
 }

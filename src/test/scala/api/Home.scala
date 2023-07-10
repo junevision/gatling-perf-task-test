@@ -12,6 +12,7 @@ object Home {
     exec(
       http("home")
         .get(baseUrl)
+        .check(status.is(200))
     )
   }
 }

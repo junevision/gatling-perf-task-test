@@ -8,22 +8,18 @@ import io.gatling.http.Predef._
 
 object Products {
 
-  val productsFilePath = "/products"
+  val productsFilePath: String = "/products" + "/${product_name}"
 
-  def navigateToTableProduct(): ChainBuilder = {
-    navigateToProducts("/${table_product_name}", "table_product_id", "table_product_price")
-  }
+  val regexOfCurrentProductId = """name="current_product" value="(.+?)">"""
+  val regexOfCurrentProductQuantity = """<input name="current_quantity".+value="(.+?)">"""
 
-  def navigateToChairProduct(): ChainBuilder = {
-    navigateToProducts("/${chair_product_name}", "chair_product_id", "chair_product_price")
-  }
-
-  private def navigateToProducts(specificProductPath: String, productId: String, productPrice: String): ChainBuilder = {
+  def navigateToProducts(): ChainBuilder = {
     exec(
-      http(productsFilePath + specificProductPath)
-        .get(baseUrl + productsFilePath + specificProductPath)
-        .check(regex("""name="current_product" value="(.+?)">""").saveAs(productId))
-        .check(regex("""small-price ic-design">\S(.*?.00)""").saveAs(productPrice))
+      http(productsFilePath)
+        .get(baseUrl + productsFilePath)
+        .check(status.is(200))
+        .check(regex(regexOfCurrentProductId).find.saveAs("current_product_id"))
+        .check(regex(regexOfCurrentProductQuantity).find.saveAs("current_product_quantity"))
     )
   }
 }
