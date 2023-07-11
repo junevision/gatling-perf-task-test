@@ -15,9 +15,7 @@ object Checkout {
       http("first checkout")
         .post(baseUrl + checkoutFilePath)
         .formParam("cart_content", "#{cart_contents}")
-        .formParam("p_quantity[]", "#{product_quantity}")
         .formParam("shipping", "order")
-        .formParam("p_id[]", "#{product_id}")
         .formParam("trans_id", "#{currentTimeMillis()}")
         .formParam("total_net", "#{total_price}")
         .check(status.is(200))
@@ -44,6 +42,7 @@ object Checkout {
         .formParam("cart_email", "#{randomAlphanumeric(10)}" + "@gmail.com")
         .formParam("total_net", "#{total_price}")
         .check(status.is(200))
+        .check(substring("thank-you").exists)
     )
   }
 }

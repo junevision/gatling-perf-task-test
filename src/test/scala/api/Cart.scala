@@ -12,8 +12,6 @@ object Cart {
   val cartFilePath = "/cart"
 
   val regexOfTotalPrice = """name="total_net" value="(.+?)""""
-  val regexOfProductId = """class="product_id" value="(.+?)">"""
-  val regexOfProductQuantity = """name="p_quantity\[]" value="(.+?)">"""
   val regexOfCartContent = """name="cart_content" value='(.+?)'"""
 
   def addToCart(): ChainBuilder = {
@@ -33,8 +31,6 @@ object Cart {
     exec(
       http(cartFilePath)
         .get(baseUrl + cartFilePath)
-        .check(regex(regexOfProductId).find.saveAs("product_id"))
-        .check(regex(regexOfProductQuantity).find.saveAs("product_quantity"))
         .check(regex(regexOfTotalPrice).find.saveAs("total_price"))
         .check(regex(regexOfCartContent).find.saveAs("cart_contents"))
         .check(status.is(200))
