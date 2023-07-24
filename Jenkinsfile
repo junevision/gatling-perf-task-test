@@ -19,10 +19,12 @@ pipeline {
             steps {
                 sh '~/Documents/apache-maven-3.8.1/bin/mvn gatling:test'
             }
-        }
 
-        publishers {
-                        archiveGatling()
-                    }
+            post {
+                always {
+                        gatlingArchive()
+                        }
+                }
+        }
     }
 }
