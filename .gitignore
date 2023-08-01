@@ -1,3 +1,4 @@
 .idea
 gatling-perf-task-test.iml
 target
+target/gatling/lastRun.txt
